@@ -5,15 +5,17 @@ export interface Message extends Document {
   createdAt: Date;
 }
 
-const MessageSchema: Schema<Message> = new Schema(
-  {
-    content: {
-      type: String,
-      required: true
-    }
+const MessageSchema: Schema<Message> = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true
   },
-  { timestamps: true }
-);
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now
+  }
+});
 
 export interface User extends Document {
   username: string;
@@ -23,7 +25,7 @@ export interface User extends Document {
   verifyCodeExpiry: Date;
   isVerified: boolean;
   isAcceptingMessages: boolean;
-  messages: Array<Message>;
+  messages: Message[];
 }
 
 // Updated User schema
@@ -32,8 +34,7 @@ const UserSchema: Schema<User> = new mongoose.Schema({
     type: String,
     required: [true, "Username is required"],
     trim: true,
-    unique: true,
-    lowercase: true
+    unique: true
   },
   email: {
     type: String,
@@ -61,10 +62,7 @@ const UserSchema: Schema<User> = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  messages: {
-    type: [MessageSchema],
-    default: []
-  }
+  messages: [MessageSchema]
 });
 
 const UserModel =

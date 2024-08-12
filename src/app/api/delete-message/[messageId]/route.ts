@@ -1,5 +1,5 @@
 import UserModel from "@/models/user.model";
-import { dbConnect } from "@/lib/connectDB";
+import dbConnect from "@/lib/connectDB";
 import { Message } from "@/models/user.model";
 import { auth } from "../../../../../auth";
 import { User } from "next-auth";

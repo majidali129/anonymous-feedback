@@ -1,4 +1,4 @@
-import { dbConnect } from "@/lib/connectDB";
+import dbConnect from "@/lib/connectDB";
 import UserModel from "@/models/user.model";
 import { User } from "next-auth";
 import { auth } from "../../../../auth";

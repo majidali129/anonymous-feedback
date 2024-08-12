@@ -1,24 +1,31 @@
 import mongoose from "mongoose";
 
-type connectionObject = {
+type ConnectionObject = {
   isConnected?: number;
 };
 
-const connection: connectionObject = {};
+const connection: ConnectionObject = {};
 
-export const dbConnect = async (): Promise<void> => {
+async function dbConnect(): Promise<void> {
+  // Check if we have a connection to the database or if it's currently connecting
   if (connection.isConnected) {
-    console.log("DB is already connected");
+    console.log("Already connected to the database");
     return;
   }
+
   try {
-    // if (process.env.VERCEL_ENV === "development") {
-    const db = await mongoose.connect(process.env.MONGODB_URI! || "");
+    // Attempt to connect to the database
+    const db = await mongoose.connect(process.env.MONGODB_URI || "", {});
+
     connection.isConnected = db.connections[0].readyState;
-    console.log("DB connected successfully 🚀");
-    // }
+
+    console.log("Database connected successfully");
   } catch (error) {
-    console.log("DB connection failed 🎆", error);
+    console.error("Database connection failed:", error);
+
+    // Graceful exit in case of a connection error
     process.exit(1);
   }
-};
+}
+
+export default dbConnect;

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import sendVerificationEmail from "@/helpers/sendVerificationEmail";
 import UserModel from "@/models/user.model";
-import { dbConnect } from "@/lib/connectDB";
+import dbConnect from "@/lib/connectDB";
 
 export const POST = async (request: NextRequest) => {
   await dbConnect();
