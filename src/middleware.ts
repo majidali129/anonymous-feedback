@@ -19,7 +19,7 @@ export default auth((req) => {
 
 export const config = {
   matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/verify/:path*"],
-  runtime: "experimental-edge",
+  runtime: "nodejs",
   unstable_allowDynamic: [
     "/src/lib/connectDB.ts",
     "/node_modules//mongoose/dist/**"
