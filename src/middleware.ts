@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { auth } from "../auth";
-// import squareWasm from "./square.wasm?module";
 
 export default auth((req) => {
   console.log("middleware runs");
@@ -18,10 +17,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/verify/:path*"],
-  runtime: "nodejs",
-  unstable_allowDynamic: [
-    "/src/lib/connectDB.ts",
-    "/node_modules//mongoose/dist/**"
-  ]
+  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/verify/:path*"]
 };
