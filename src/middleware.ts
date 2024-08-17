@@ -17,5 +17,8 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/verify/:path*"]
+  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/verify/:path*"],
+  unstable_allowDynamic: [
+    "/node_modules/mongoose/dist/browser.umd.js"
+  ]
 };
